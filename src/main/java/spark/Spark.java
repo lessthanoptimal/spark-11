@@ -1068,6 +1068,16 @@ public class Spark {
         getInstance().secure(keystoreFile, keystorePassword, truststoreFile, truststorePassword);
     }
 
+    public static void setSecure(String keystoreFile,
+                                 String keystorePassword,
+                                 String keystoreType,
+                                 String truststoreFile,
+                                 String truststorePassword,
+                                 String truststoreType) {
+        getInstance().secure(keystoreFile, keystorePassword, keystoreType,null,
+            truststoreFile, truststorePassword, truststoreType, false);
+    }
+
     /**
      * Set the connection to be secure, using the specified keystore and
      * truststore. This has to be called before any route mapping is done. You
@@ -1088,6 +1098,16 @@ public class Spark {
                               String truststoreFile,
                               String truststorePassword) {
         getInstance().secure(keystoreFile, keystorePassword, truststoreFile, truststorePassword);
+    }
+
+    public static void secure(String keystoreFile,
+                              String keystorePassword,
+                              String keystoreType,
+                              String truststoreFile,
+                              String truststorePassword,
+                              String truststoreType) {
+        getInstance().secure(keystoreFile, keystorePassword, keystoreType, null,
+            truststoreFile, truststorePassword, truststoreType, false);
     }
 
     /**
@@ -1172,7 +1192,7 @@ public class Spark {
                               String truststoreFile,
                               String truststorePassword,
                               boolean needsClientCert) {
-        getInstance().secure(keystoreFile, keystorePassword, certAlias, truststoreFile, truststorePassword, needsClientCert);
+        getInstance().secure(keystoreFile, keystorePassword, null, certAlias, truststoreFile, truststorePassword, null, needsClientCert);
     }
 
     /**
@@ -1186,17 +1206,19 @@ public class Spark {
 
     /**
      * Making Spark use virtual threads in Java 21
+     *
      * @param useVirtualThread if true use v-thread else system thread
      */
-    public static void useVirtualThread(boolean useVirtualThread){
+    public static void useVirtualThread(boolean useVirtualThread) {
         getInstance().useVThread(useVirtualThread);
     }
 
     /**
      * Gets the current used thread type
+     *
      * @return true if using v-thread false otherwise
      */
-    public static boolean useVirtualThread(){
+    public static boolean useVirtualThread() {
         return getInstance().useVThread();
     }
 
@@ -1249,13 +1271,13 @@ public class Spark {
     public static void stop() {
         getInstance().stop();
     }
-    
+
     /**
      * Waits for the Spark server to be stopped.
      * If it's already stopped, will return immediately.
      */
     public static void awaitStop() {
-    	getInstance().awaitStop();
+        getInstance().awaitStop();
     }
 
     ////////////////

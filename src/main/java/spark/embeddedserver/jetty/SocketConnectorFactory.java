@@ -78,6 +78,10 @@ public class SocketConnectorFactory {
             sslContextFactory.setKeyStorePassword(sslStores.keystorePassword());
         }
 
+        if (sslStores.keystoreType() != null) {
+            sslContextFactory.setKeyStoreType(sslStores.keystoreType());
+        }
+
         if (sslStores.certAlias() != null) {
             sslContextFactory.setCertAlias(sslStores.certAlias());
         }
@@ -88,6 +92,10 @@ public class SocketConnectorFactory {
 
         if (sslStores.trustStorePassword() != null) {
             sslContextFactory.setTrustStorePassword(sslStores.trustStorePassword());
+        }
+
+        if (sslStores.truststoreType() != null) {
+            sslContextFactory.setKeyStoreType(sslStores.truststoreType());
         }
 
         if (sslStores.needsClientCert()) {

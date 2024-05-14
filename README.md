@@ -8,7 +8,7 @@ Spark3-JDK17 - a tiny web framework for Java 9+!
 <dependency>
     <groupId>org.zoomba-lang</groupId>
     <artifactId>spark-core</artifactId>
-    <version>3.0</version>
+    <version>3.1</version>
 </dependency>
 ```
 Due to some issues, the parent got changed into `org.zoomba-lang` that we own.
@@ -41,7 +41,7 @@ Getting started
 <dependency>
     <groupId>org.zoomba-lang</groupId>
     <artifactId>spark-core</artifactId>
-    <version>3.0</version>
+    <version>3.1</version>
 </dependency>
 ```
 

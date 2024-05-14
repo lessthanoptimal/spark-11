@@ -247,7 +247,7 @@ public final class Service  extends Routable implements VirtualThreadAware {
                                        String keystorePassword,
                                        String truststoreFile,
                                        String truststorePassword) {
-        return secure(keystoreFile, keystorePassword, null, truststoreFile, truststorePassword, false);
+        return secure(keystoreFile, keystorePassword, null, null, truststoreFile, truststorePassword, null, false);
     }
 
     /**
@@ -272,7 +272,7 @@ public final class Service  extends Routable implements VirtualThreadAware {
                                        String certAlias,
                                        String truststoreFile,
                                        String truststorePassword) {
-        return secure(keystoreFile, keystorePassword, certAlias, truststoreFile, truststorePassword, false);
+        return secure(keystoreFile, keystorePassword, null, certAlias, truststoreFile, truststorePassword, null, false);
     }
 
     /**
@@ -298,7 +298,7 @@ public final class Service  extends Routable implements VirtualThreadAware {
                                        String truststoreFile,
                                        String truststorePassword,
                                        boolean needsClientCert) {
-        return secure(keystoreFile, keystorePassword, null, truststoreFile, truststorePassword, needsClientCert);
+        return secure(keystoreFile, keystorePassword, null, null, truststoreFile, truststorePassword, null, needsClientCert);
     }
 
     /**
@@ -322,9 +322,11 @@ public final class Service  extends Routable implements VirtualThreadAware {
      */
     public synchronized Service secure(String keystoreFile,
                                        String keystorePassword,
+                                       String keystoreType,
                                        String certAlias,
                                        String truststoreFile,
                                        String truststorePassword,
+                                       String truststoreType,
                                        boolean needsClientCert) {
         if (initialized) {
             throwBeforeRouteMappingException();
@@ -335,7 +337,8 @@ public final class Service  extends Routable implements VirtualThreadAware {
                     "Must provide a keystore file to run secured");
         }
 
-        sslStores = SslStores.create(keystoreFile, keystorePassword, certAlias, truststoreFile, truststorePassword, needsClientCert);
+        sslStores = SslStores.create(keystoreFile, keystorePassword, keystoreType, certAlias,
+            truststoreFile, truststorePassword, truststoreType, needsClientCert);
         return this;
     }
 
